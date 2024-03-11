@@ -4,9 +4,9 @@
 npm install
 
 # Build the projects
-nx build rider-api
-nx build driver-api
-nx build admin-api
+npx nx build rider-api
+npx nx build driver-api
+npx nx build admin-api
 # Add more build commands as necessary
 
 # delete pm2 builds
