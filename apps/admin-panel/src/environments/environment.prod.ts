@@ -1,5 +1,10 @@
 export const environment = {
   production: true,
-  root: `${window.location.protocol}//${window.location.hostname.toString()}:4001/`,
-  wsEndpoint: `${window.location.protocol.replace('http','ws')}//${window.location.hostname.toString()}:4001/graphql`
+  root: `${
+    window.location.protocol
+  }//api.${window.location.hostname.toString()}`,
+  wsEndpoint: `${window.location.protocol.replace(
+    "http",
+    "ws",
+  )}//api.${window.location.hostname.toString()}/graphql`,
 };

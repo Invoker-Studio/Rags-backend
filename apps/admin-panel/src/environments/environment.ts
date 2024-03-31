@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  root: 'http://localhost:3000/',
-  wsEndpoint: 'ws://localhost:3000/graphql',
+  root: "https://api.ragstaxi.com",
+  wsEndpoint: "ws://api.ragstaxi.com/graphql",
   // root: 'https://demo-admin.ridy.io:4001/',
   // wsEndpoint: 'wss://demo-admin.ridy.io:4001/graphql',
 };
