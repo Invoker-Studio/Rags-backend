@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { APOLLO_OPTIONS } from 'apollo-angular';
+import { NgModule } from "@angular/core";
+import { APOLLO_OPTIONS } from "apollo-angular";
 import {
   ApolloCache,
   ApolloClientOptions,
@@ -7,15 +7,15 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
   split,
-} from '@apollo/client/core';
-import { HttpLink } from 'apollo-angular/http';
-import { DefaultOptions } from '@apollo/client/core';
-import { setContext } from '@apollo/client/link/context';
-import { environment } from '@ridy/admin-panel/src/environments/environment';
-import { getMainDefinition } from '@apollo/client/utilities';
-import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
-import { createClient } from 'graphql-ws';
-import { onError } from '@apollo/client/link/error';
+} from "@apollo/client/core";
+import { HttpLink } from "apollo-angular/http";
+import { DefaultOptions } from "@apollo/client/core";
+import { setContext } from "@apollo/client/link/context";
+import { environment } from "@ridy/admin-panel/src/environments/environment";
+import { getMainDefinition } from "@apollo/client/utilities";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
+import { onError } from "@apollo/client/link/error";
 
 export function createApollo(
   httpLink: HttpLink,
@@ -27,29 +27,29 @@ export function createApollo(
     createClient({
       url: environment.wsEndpoint,
       connectionParams: () => ({
-        authToken: localStorage.getItem('ridy_admin_token'),
+        authToken: localStorage.getItem("ridy_admin_token"),
       }),
     }),
   );
   const basic = setContext(() => ({
     headers: {
-      Accept: 'charset=utf-8',
+      Accept: "charset=utf-8",
     },
   }));
   const auth = setContext(() => {
     return {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('ridy_admin_token')}`,
+        Authorization: `Bearer ${localStorage.getItem("ridy_admin_token")}`,
       },
     };
   });
   const defaultOptions: DefaultOptions = {
     watchQuery: {
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
       //errorPolicy: 'ignore',
     },
     query: {
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
       //errorPolicy: 'all',
     },
   };
@@ -68,8 +68,8 @@ export function createApollo(
     ({ query }) => {
       const definition = getMainDefinition(query);
       return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'subscription'
+        definition.kind === "OperationDefinition" &&
+        definition.operation === "subscription"
       );
     },
     wsLink,
