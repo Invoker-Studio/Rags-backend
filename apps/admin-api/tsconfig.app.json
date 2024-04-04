@@ -1,19 +1,30 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "baseUrl": "./", // This must be specified if "paths" is set
+    "paths": {
+      "*": ["../../node_modules/*"],
+      "@ridy/admin-panel/*": ["../../apps/admin-panel/*"],
+      "@ridy/coupon": ["../../libs/database/src/lib/coupon/index.ts"],
+      "@ridy/database": ["../../libs/database/src/index.ts"],
+      "@ridy/database/*": ["../../libs/database/src/lib/entities/*"],
+      "@ridy/geo/*": ["../../libs/database/src/lib/geo/*"],
+      "@ridy/order/*": [
+        "../../libs/database/src/lib/order/*",
+        "../../libs/database/src/lib/order/region/*",
+        "../../libs/database/src/lib/order/google-services/*"
+      ],
+      "@ridy/payment": ["../../libs/database/src/lib/payment/index.ts"],
+      "@ridy/redis/*": ["../../libs/database/src/lib/redis/*"],
+      "@ridy/twilio/*": ["../../libs/database/src/lib/twilio/*"]
+    },
+    "outDir": "./dist",
     "module": "commonjs",
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "es2021"
+    "target": "es2021",
+    "sourceMap": true
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "jest.config.ts"
-  ],
-  "include": [
-    "**/*.ts"
-  ]
+  "exclude": ["**/*.spec.ts", "jest.config.ts"],
+  "include": ["**/*.ts"]
 }
